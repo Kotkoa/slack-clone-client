@@ -33,7 +33,7 @@ const Sidebar = () => {
                     <button
                       type="button"
                       onClick={() => {
-                        return setStatus(it)
+                        dispatch(setStatus(it))
                       }}
                     >
                       {it}

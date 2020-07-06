@@ -15,12 +15,14 @@ export default (state = initialState, action) => {
     case ADD_CHANELL:
       return {
         ...state,
-        chanells: { ...state.chanells, [action.chanell]: [action.chanell] }
+        chanells: {
+          ...state.chanells, [action.chanell]: []
+        }
       }
     case ADD_MESSAGE:
       return {
         ...state,
-        chanells: [...state.chanells, { chanell: action.chanell, message: action.message }]
+        chanells: { ...state.chanells, [action.chanell]: [...state.chanells[action.chanell], ...{ user: action.user, message: action.message, date: action.date}] }
       }
     case SET_STATUS:
       return {
@@ -37,8 +39,8 @@ export function addChanell(chanell) {
   return ({ type: ADD_CHANELL, chanell })
 }
 
-export function addMessage(chanell, message) {
-  return ({ type: ADD_MESSAGE, chanell, message })
+export function addMessage(chanell, username, message, date) {
+  return ({ type: ADD_MESSAGE, chanell, message, username, date })
 }
 
 export function setStatus(chanell) {
